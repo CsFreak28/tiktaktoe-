@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "panchang";
+  src: url("/Panchang.woff2") format("woff2");
+}
+body {
+  background-color: #f3f3f3;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  position: absolute;
+  top: 0;
+  font-family: "panchang";
+}
+.board {
+  width: 71%;
+  height: 80%;
+  background-color: #040f16;
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  padding: 20px;
+  border-radius: 10px;
+  grid-gap: 10px;
+}
+.playerSpace {
+  background-color: #0094c6;
+  border-radius: 15px;
+}
