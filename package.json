@@ -1,0 +1,26 @@
+{
+  "name": "tiktaktoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tiktaktoe.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CsFreak/tiktaktoe-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CsFreak/tiktaktoe-/issues"
+  },
+  "homepage": "https://github.com/CsFreak/tiktaktoe-#readme",
+  "dependencies": {
+    "gsap": "^3.10.4",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
