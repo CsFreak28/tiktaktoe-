@@ -16,7 +16,6 @@ function ChangePlayer() {
 
 //add the text to the html board and change the text colors depending on who's turn it is.
 function addPlayerToBoard(textSpace) {
-  console.log(textSpace);
   if (currentPlayer === "o" && textSpace !== undefined) {
     textSpace.innerHTML = `<div class='player-o'>${currentPlayer}</div>`;
   } else if (textSpace !== undefined) {
@@ -26,16 +25,25 @@ function addPlayerToBoard(textSpace) {
 function play(e) {
   const space = e.target;
   const textSpace = space.children[0];
-  console.log(textSpace);
   addPlayerToBoard(textSpace);
-  checkForAWinner();
+  const aPlayerHasWon = checkForAWinner();
+  console.log(aPlayerHasWon);
+  if (aPlayerHasWon === true) {
+    window.prompt(`player ${currentPlayer} has won `);
+    return;
+  }
   ChangePlayer();
 }
 function checkForAWinner() {
-  const value = checkRow();
-  console.log(value);
+  let currentPlayerHasWon = false;
+  const rowComplete = checkRow();
+  const columnComplete = checkColumns();
+  const diagonalComplete = checkDiagonals();
+  if (diagonalComplete || rowComplete || columnComplete) {
+    currentPlayerHasWon = true;
+  }
+  return currentPlayerHasWon;
 }
-checkForAWinner();
 function checkRow() {
   let aPlayerHasWon = false;
   let row1 = [playerSpaces[0], playerSpaces[1], playerSpaces[2]];
@@ -45,6 +53,32 @@ function checkRow() {
   let allTheRows = [row1, row2, row3];
   allTheRows.forEach((row) => {
     if (row.every((el) => el.textContent === currentPlayer)) {
+      aPlayerHasWon = true;
+    }
+  });
+  return aPlayerHasWon;
+}
+function checkColumns() {
+  let aPlayerHasWon = false;
+  let column1 = [playerSpaces[0], playerSpaces[3], playerSpaces[6]];
+  let column2 = [playerSpaces[1], playerSpaces[4], playerSpaces[7]];
+  let column3 = [playerSpaces[2], playerSpaces[5], playerSpaces[8]];
+  let allTheColumns = [column1, column2, column3];
+  allTheColumns.forEach((column) => {
+    if (column.every((el) => el.textContent === currentPlayer)) {
+      aPlayerHasWon = true;
+    }
+  });
+  return aPlayerHasWon;
+}
+function checkDiagonals() {
+  let aPlayerHasWon = false;
+  let diagonal1 = [playerSpaces[0], playerSpaces[4], playerSpaces[8]];
+  let diagonal2 = [playerSpaces[2], playerSpaces[4], playerSpaces[6]];
+  let allTheDiagonals = [diagonal1, diagonal2];
+
+  allTheDiagonals.forEach((diagonal) => {
+    if (diagonal.every((el) => el.textContent === currentPlayer)) {
       aPlayerHasWon = true;
     }
   });
