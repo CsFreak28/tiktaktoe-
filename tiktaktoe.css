@@ -28,11 +28,27 @@ h1 {
   background-color: #040f16;
   display: grid;
   grid-template-columns: repeat(3, 300px);
+  grid-template-rows: repeat(3, 155px);
   padding: 20px;
   border-radius: 10px;
   grid-gap: 10px;
 }
 .playerSpace {
   background-color: #0094c6;
-  border-radius: 15px;
+  position: relative;
+  height: 100%;
+}
+.textSpace {
+  position: absolute;
+  font-size: 150px;
+  user-select: none;
+  font-family: "panchang";
+  color: #040f16;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.player-o {
+  color: #f3f3f3;
 }
