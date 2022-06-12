@@ -6,6 +6,7 @@ headerAnimation();
 const board = document.querySelector(".board");
 //get the spaces in the board
 const playerSpaces = [...board.children];
+console.log(playerSpaces);
 //a global variable representing the current player(whos turn it is to play)
 let currentPlayer = "x";
 
@@ -20,13 +21,12 @@ function ChangePlayer() {
 
 //add the text to the html board and change the text colors depending on who's turn it is.
 function addPlayerToBoard(textSpace) {
-  console.log(textSpace);
   if (textSpace !== undefined) {
     if (currentPlayer === "o") {
       textSpace.style.color = "white";
       textSpace.textContent = currentPlayer;
     } else if (currentPlayer === "x") {
-      board.style.color = "#040f16";
+      textSpace.style.color = "#040f16";
       textSpace.textContent = currentPlayer;
     }
   }
@@ -35,17 +35,23 @@ function play(e) {
   const space = e.target;
   const textSpace = space.children[0];
   addPlayerToBoard(textSpace);
-  console.log(currentPlayer);
   const aPlayerHasWon = checkForAWinner();
-  console.log(aPlayerHasWon);
+  let noEmptySpace = playerSpaces.every(
+    (el) => el.children[0].textContent !== ""
+  );
+  console.log(noEmptySpace);
   if (aPlayerHasWon === true) {
-    restart();
+    restart(`player ${currentPlayer} has won`);
+    return;
+  } else if (!aPlayerHasWon && noEmptySpace) {
+    restart("no player won this round");
     return;
   }
   if (textSpace !== undefined) {
     ChangePlayer();
   }
 }
+
 function checkForAWinner() {
   let currentPlayerHasWon = false;
   const rowComplete = checkRow();
@@ -99,10 +105,9 @@ function checkDiagonals() {
 playerSpaces.forEach((space) => {
   space.addEventListener("click", play);
 });
-
-function restart() {
+function restart(message) {
   setTimeout(() => {
-    window.alert(`player ${currentPlayer} has won `);
+    window.alert(message);
     playerSpaces.forEach((el) => {
       let textSpace = el.children[0];
       textSpace.textContent = null;
