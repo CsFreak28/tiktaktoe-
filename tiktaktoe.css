@@ -5,7 +5,7 @@
 }
 @font-face {
   font-family: "panchang";
-  src: url("/Panchang.woff2") format("woff2");
+  src: url("./Panchang.woff2") format("woff2");
 }
 body {
   background-color: #f3f3f3;
